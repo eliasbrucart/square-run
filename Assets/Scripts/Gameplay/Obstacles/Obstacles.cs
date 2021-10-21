@@ -33,10 +33,20 @@ public class Obstacles : MonoBehaviour
             switch (random)
             {
                 case 1:
-                    posX = 2.694f;
+                    if(gameObject.tag == "Obstacle1")
+                        posX = 2.694f;
+                    else if (gameObject.tag == "Obstacle2")
+                        posX = 1.5081f;
+                    else if (gameObject.tag == "Obstacle3")
+                        posX = 2.0056f;
                     break;
                 case 2:
-                    posX = -2.679f;
+                    if(gameObject.tag == "Obstacle1")
+                        posX = -2.679f;
+                    else if (gameObject.tag == "Obstacle2")
+                        posX = -1.495f;
+                    else if (gameObject.tag == "Obstacle3")
+                        posX = -1.995f;
                     break;
                 default:
                     break;
