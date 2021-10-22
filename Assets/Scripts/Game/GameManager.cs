@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     {
         sc = ScenesManager.instanceScenesManager;
         Player.PlayerDie += CheckGameOver;
+        timer = 0.0f;
     }
 
     void Update()
