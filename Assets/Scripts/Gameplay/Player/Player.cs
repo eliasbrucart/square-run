@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -7,9 +6,11 @@ public class Player : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float maxPosX;
     [SerializeField] private float minPosX;
+    public bool isDead;
+    static public event Action PlayerDie;
     void Start()
     {
-
+        isDead = false;
     }
 
     void Update()
@@ -26,5 +27,25 @@ public class Player : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         Vector3 direction = new Vector3(horizontal, 0.0f, 0.0f);
         transform.position += direction * speed * Time.deltaTime;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Obstacle1") || collision.gameObject.CompareTag("Obstacle2") || collision.gameObject.CompareTag("Obstacle3"))
+        {
+            isDead = true;
+            PlayerDie?.Invoke();
+            Debug.Log("isCollision");
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Obstacle1") || collision.gameObject.CompareTag("Obstacle2") || collision.gameObject.CompareTag("Obstacle3"))
+        {
+            isDead = true;
+            PlayerDie?.Invoke();
+            Debug.Log("IsTrigger");
+        }
     }
 }

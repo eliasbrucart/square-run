@@ -273,6 +273,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d118923a23b41fb4ba1878d50f4f0054, type: 3}
+--- !u!114 &991991433 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4919650890296063453, guid: 6cc89a07a9880514dadca40e086131a6,
+    type: 3}
+  m_PrefabInstance: {fileID: 5578614237942901332}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa37edf692ff5c0478386dca0e2b7bd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1753082748
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -385,6 +397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cfbc5c1ea118904aaa130657383006d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 991991433}
 --- !u!1001 &1797628963
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -458,6 +471,49 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8e5a39fc94c49647a121b01de29823c, type: 3}
+--- !u!1 &1850851549
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1850851550}
+  - component: {fileID: 1850851551}
+  m_Layer: 0
+  m_Name: ScenesManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1850851550
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1850851549}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.75877166, y: 1.9052861, z: -0.5300543}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1850851551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1850851549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d802af68132f2ab4ea815c2981db366d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &481737289784703323
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -672,6 +728,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 216337144590039296, guid: 6cc89a07a9880514dadca40e086131a6,
+        type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 216337144590039296, guid: 6cc89a07a9880514dadca40e086131a6,
+        type: 3}
+      propertyPath: m_Simulated
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3328503557066372157, guid: 6cc89a07a9880514dadca40e086131a6,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5578614238934392353, guid: 6cc89a07a9880514dadca40e086131a6,
         type: 3}
       propertyPath: m_Name
@@ -730,21 +801,6 @@ PrefabInstance:
     - target: {fileID: 5578614238934392355, guid: 6cc89a07a9880514dadca40e086131a6,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9071923370828568645, guid: 6cc89a07a9880514dadca40e086131a6,
-        type: 3}
-      propertyPath: m_Simulated
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9071923370828568645, guid: 6cc89a07a9880514dadca40e086131a6,
-        type: 3}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 9071923370828568645, guid: 6cc89a07a9880514dadca40e086131a6,
-        type: 3}
-      propertyPath: m_SleepingMode
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
