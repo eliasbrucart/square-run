@@ -29,16 +29,6 @@ public class Player : MonoBehaviour
         transform.position += direction * speed * Time.deltaTime;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Obstacle1") || collision.gameObject.CompareTag("Obstacle2") || collision.gameObject.CompareTag("Obstacle3"))
-        {
-            isDead = true;
-            PlayerDie?.Invoke();
-            Debug.Log("isCollision");
-        }
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Obstacle1") || collision.gameObject.CompareTag("Obstacle2") || collision.gameObject.CompareTag("Obstacle3"))

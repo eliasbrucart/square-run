@@ -1,16 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Obstacles : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private float maxPosY;
     [SerializeField] private float minPosY;
-    void Start()
-    {
-        
-    }
+    private const float possiblePosXOne = 2.006f;
+    private const float possiblePosXTwo = 1.5081f;
+    private const float possiblePosXThree = 2.0056f;
+    private const float possiblePosXFour = -1.9972f;
+    private const float possiblePosXFive = -1.495f;
+    private const float possiblePosXSix = -1.995f;
 
     void Update()
     {
@@ -34,19 +34,19 @@ public class Obstacles : MonoBehaviour
             {
                 case 1:
                     if(gameObject.tag == "Obstacle1")
-                        posX = 2.694f;
+                        posX = possiblePosXOne;
                     else if (gameObject.tag == "Obstacle2")
-                        posX = 1.5081f;
+                        posX = possiblePosXTwo;
                     else if (gameObject.tag == "Obstacle3")
-                        posX = 2.0056f;
+                        posX = possiblePosXThree;
                     break;
                 case 2:
                     if(gameObject.tag == "Obstacle1")
-                        posX = -2.679f;
+                        posX = possiblePosXFour;
                     else if (gameObject.tag == "Obstacle2")
-                        posX = -1.495f;
+                        posX = possiblePosXFive;
                     else if (gameObject.tag == "Obstacle3")
-                        posX = -1.995f;
+                        posX = possiblePosXSix;
                     break;
                 default:
                     break;

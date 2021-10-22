@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private Player player;
+    public float timer { get; set; }
     private ScenesManager sc;
     void Start()
     {
@@ -14,6 +13,8 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        timer += Time.deltaTime;
+        Debug.Log(timer);
         CheckGameOver();
     }
 
