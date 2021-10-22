@@ -1,0 +1,26 @@
+Package Name: com.example.square_run
+
+Modulo:
+com.example.squarelogger
+Package Name: com.example.squarelogger
+
+public class SquareManager {
+    public static final SquareManager _instance = new SquareManager();
+
+    public static SquareManager GetInstance(){
+        return _instance;
+    }
+
+    public void SendLog(String msg){
+        Log.d("SM=>", msg);
+    }
+
+}
+
+task exportSM(type:Copy){
+    dependsOn assemble
+    from('build/outputs/aar')
+    into('')
+    include('')
+    println()
+}
