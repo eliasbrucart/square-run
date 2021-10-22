@@ -5,6 +5,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Player player;
     public float timer { get; set; }
     private ScenesManager sc;
+
+    static public GameManager instanceGameManager;
+    static public GameManager Instance { get { return instanceGameManager; } }
+
+    private void Awake()
+    {
+        if (instanceGameManager != null && instanceGameManager != this)
+            Destroy(this.gameObject);
+        else
+            instanceGameManager = this;
+    }
+
     void Start()
     {
         sc = ScenesManager.instanceScenesManager;
