@@ -6,6 +6,7 @@ public class SquareManager {
     public static final SquareManager _instance = new SquareManager();
 
     public static SquareManager GetInstance(){
+        Log.d("SquareLogger->", "Esta funcionando GetInstance");
         return _instance;
     }
 

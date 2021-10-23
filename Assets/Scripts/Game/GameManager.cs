@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
         sc = ScenesManager.instanceScenesManager;
         Player.PlayerDie += CheckGameOver;
         timer = 0.0f;
+        SquareLoggerImpl.SendLog("Holi");
     }
 
     void Update()
