@@ -5,9 +5,11 @@ using UnityEngine;
 public class CoinSpawner : MonoBehaviour
 {
     public int score;
+    public float startPosX;
+    public float startPosY;
+    public float endPosX;
+    public float endPosY;
     [SerializeField] private GameObject coinPrefab;
-    [SerializeField] private float startPosX;
-    [SerializeField] private float startPosY;
     [SerializeField] private int timeToSpawnCoin;
     private float timerToSpawnCoin;
     void Start()
