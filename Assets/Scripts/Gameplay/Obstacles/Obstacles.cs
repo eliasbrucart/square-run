@@ -11,6 +11,12 @@ public class Obstacles : MonoBehaviour
     private const float possiblePosXFour = -1.9972f;
     private const float possiblePosXFive = -1.495f;
     private const float possiblePosXSix = -1.995f;
+    public bool canMove;
+
+    private void Start()
+    {
+        canMove = false;
+    }
 
     void Update()
     {
@@ -20,7 +26,8 @@ public class Obstacles : MonoBehaviour
 
     private void Move()
     {
-        transform.position += Vector3.down * speed * Time.deltaTime;
+        if(canMove)
+            transform.position += Vector3.down * speed * Time.deltaTime;
     }
 
     private void UpdatePosition()

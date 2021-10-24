@@ -7,11 +7,13 @@ public class Player : MonoBehaviour
     [SerializeField] private float maxPosX;
     [SerializeField] private float minPosX;
     public bool isDead;
+    public bool canMove;
     static public event Action PlayerDie;
     static public event Action PlayerGetCoin;
     void Start()
     {
         isDead = false;
+        canMove = false;
     }
 
     void Update()
@@ -21,13 +23,16 @@ public class Player : MonoBehaviour
 
     private void Move()
     {
-        if (transform.position.x >= 2.68f)
-            transform.position = new Vector3(maxPosX, 0.0f, 0.0f);
-        if(transform.position.x <= -2.68f)
-            transform.position = new Vector3(minPosX, 0.0f, 0.0f);
-        float horizontal = Input.GetAxis("Horizontal");
-        Vector3 direction = new Vector3(horizontal, 0.0f, 0.0f);
-        transform.position += direction * speed * Time.deltaTime;
+        if (canMove)
+        {
+            if (transform.position.x >= 2.68f)
+                transform.position = new Vector3(maxPosX, 0.0f, 0.0f);
+            if (transform.position.x <= -2.68f)
+                transform.position = new Vector3(minPosX, 0.0f, 0.0f);
+            float horizontal = Input.GetAxis("Horizontal");
+            Vector3 direction = new Vector3(horizontal, 0.0f, 0.0f);
+            transform.position += direction * speed * Time.deltaTime;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

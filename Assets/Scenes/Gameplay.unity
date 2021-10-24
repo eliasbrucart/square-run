@@ -204,6 +204,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &640437510 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1190328566, guid: c8e5a39fc94c49647a121b01de29823c,
+    type: 3}
+  m_PrefabInstance: {fileID: 8074230986737729914}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 554e4f2f2f6225b47b647dca02ade0d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &717566808
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,6 +267,18 @@ MonoBehaviour:
   coinPrefab: {fileID: 2518772628583654060, guid: 3c9b9ffdaed4c924bb9775da16270ea3,
     type: 3}
   timeToSpawnCoin: 10
+--- !u!114 &720398751 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 780699164, guid: 06912bf5e85d4e7439f15e7d8bd3b8f9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1753082748}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 554e4f2f2f6225b47b647dca02ade0d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &740371255
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -457,6 +481,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 822372795}
   m_CullTransparentMesh: 0
+--- !u!114 &831763761 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 361322517, guid: d118923a23b41fb4ba1878d50f4f0054,
+    type: 3}
+  m_PrefabInstance: {fileID: 481737289784703323}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 554e4f2f2f6225b47b647dca02ade0d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &938574848 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1190328566, guid: c8e5a39fc94c49647a121b01de29823c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1797628963}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 554e4f2f2f6225b47b647dca02ade0d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &991991433 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4919650890296063453, guid: 6cc89a07a9880514dadca40e086131a6,
@@ -602,6 +650,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1449385912}
   m_CullTransparentMesh: 0
+--- !u!114 &1551808798 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 361322517, guid: d118923a23b41fb4ba1878d50f4f0054,
+    type: 3}
+  m_PrefabInstance: {fileID: 740371255}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 554e4f2f2f6225b47b647dca02ade0d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1739537327 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 780699164, guid: 06912bf5e85d4e7439f15e7d8bd3b8f9,
+    type: 3}
+  m_PrefabInstance: {fileID: 3260191361860603423}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 554e4f2f2f6225b47b647dca02ade0d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1753082748
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -785,9 +857,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cfbc5c1ea118904aaa130657383006d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waitTime: 3
   coinValue: 1
   player: {fileID: 991991433}
   coin: {fileID: 1724295549074029875, guid: 3c9b9ffdaed4c924bb9775da16270ea3, type: 3}
+  obstaclesInMap:
+  - {fileID: 1739537327}
+  - {fileID: 831763761}
+  - {fileID: 640437510}
+  - {fileID: 720398751}
+  - {fileID: 1551808798}
+  - {fileID: 938574848}
 --- !u!1001 &1797628963
 PrefabInstance:
   m_ObjectHideFlags: 0
