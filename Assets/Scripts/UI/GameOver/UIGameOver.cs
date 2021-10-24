@@ -4,6 +4,7 @@ using TMPro;
 public class UIGameOver : MonoBehaviour
 {
     public TMP_Text maxTime;
+    public TMP_Text maxScore;
     private GameManager gm;
     void Start()
     {
@@ -13,5 +14,6 @@ public class UIGameOver : MonoBehaviour
     void Update()
     {
         maxTime.text = "Max time " + gm.timer.ToString("F0");
+        maxScore.text = "Max score: " + gm.score.ToString("F0");
     }
 }
