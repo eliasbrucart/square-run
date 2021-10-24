@@ -7,6 +7,7 @@ public class Coin : MonoBehaviour
     void Start()
     {
         coinSpawner = FindObjectOfType<CoinSpawner>();
+        Player.PlayerGetCoin += DestroyActualInstance;
     }
 
     void Update()
@@ -24,5 +25,15 @@ public class Coin : MonoBehaviour
     {
         if (transform.position.y <= coinSpawner.endPosY)
             transform.position = new Vector3(coinSpawner.startPosX, coinSpawner.startPosY, 0.0f);
+    }
+
+    private void DestroyActualInstance()
+    {
+        Destroy(this.gameObject);
+    }
+
+    private void OnDisable()
+    {
+        Player.PlayerGetCoin -= DestroyActualInstance;
     }
 }

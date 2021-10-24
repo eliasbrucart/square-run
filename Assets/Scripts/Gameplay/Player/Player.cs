@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float minPosX;
     public bool isDead;
     static public event Action PlayerDie;
+    static public event Action PlayerGetCoin;
     void Start()
     {
         isDead = false;
@@ -37,5 +38,7 @@ public class Player : MonoBehaviour
             PlayerDie?.Invoke();
             Debug.Log("IsTrigger");
         }
+        if (collision.gameObject.CompareTag("Coin"))
+            PlayerGetCoin?.Invoke();
     }
 }

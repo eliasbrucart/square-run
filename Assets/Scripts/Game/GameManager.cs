@@ -2,8 +2,11 @@
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private Player player;
     public float timer { get; set; }
+    public int score { get; set; }
+    [SerializeField] private int coinValue;
+    [SerializeField] private Player player;
+    [SerializeField] private Coin coin;
     private ScenesManager sc;
 
     static public GameManager instanceGameManager;
@@ -21,6 +24,7 @@ public class GameManager : MonoBehaviour
     {
         sc = ScenesManager.instanceScenesManager;
         Player.PlayerDie += CheckGameOver;
+        Player.PlayerGetCoin += IncreasePoints;
         timer = 0.0f;
         SquareLoggerImpl.SendLog("Holi");
     }
@@ -32,6 +36,11 @@ public class GameManager : MonoBehaviour
         CheckGameOver();
     }
 
+    private void IncreasePoints()
+    {
+        score += coinValue;
+    }
+
     private void CheckGameOver()
     {
         if(player.isDead)
@@ -41,5 +50,6 @@ public class GameManager : MonoBehaviour
     private void OnDisable()
     {
         Player.PlayerDie -= CheckGameOver;
+        Player.PlayerGetCoin -= IncreasePoints;
     }
 }
