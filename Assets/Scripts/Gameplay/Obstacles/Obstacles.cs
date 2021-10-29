@@ -2,7 +2,7 @@
 
 public class Obstacles : MonoBehaviour
 {
-    [SerializeField] private float speed;
+    [SerializeField] public float speed;
     [SerializeField] private float maxPosY;
     [SerializeField] private float minPosY;
     private const float possiblePosXOne = 2.006f;
@@ -61,4 +61,10 @@ public class Obstacles : MonoBehaviour
             transform.position = new Vector3(posX, maxPosY, 0.0f);
         }
     }
+
+    public float GetSpeed()
+    {
+        return speed;
+    }
+
 }

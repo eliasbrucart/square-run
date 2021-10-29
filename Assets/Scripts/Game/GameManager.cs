@@ -17,6 +17,11 @@ public class GameManager : MonoBehaviour
     static public GameManager instanceGameManager;
     static public GameManager Instance { get { return instanceGameManager; } }
 
+    private const int firstScoreToIncreaseSpeed = 5;
+    private const int secondScoreToIncreaseSpeed = 10;
+    private const int thirdScoreToIncreaseSpeed = 15;
+    private const int fourthScoreToIncreaseSpeed = 20;
+
     private void Awake()
     {
         if (instanceGameManager != null && instanceGameManager != this)
@@ -38,7 +43,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if(timerWaitTime <= waitTime)
+        if (timerWaitTime <= waitTime)
         {
             timerWaitTime += Time.deltaTime;
         }
@@ -56,14 +61,25 @@ public class GameManager : MonoBehaviour
         CheckGameOver();
     }
 
+    private void IncreaseGameplaySpeed()
+    {
+        for (int i = 0; i < obstaclesInMap.Count; i++)
+        {
+            if (obstaclesInMap[i] != null)
+                obstaclesInMap[i].speed += 0.5f;
+        }
+    }
+
     private void IncreasePoints()
     {
         score += coinValue;
+        if (score == firstScoreToIncreaseSpeed || score == secondScoreToIncreaseSpeed || score == thirdScoreToIncreaseSpeed || score == fourthScoreToIncreaseSpeed)
+            IncreaseGameplaySpeed();
     }
 
     private void CheckGameOver()
     {
-        if(player.isDead)
+        if (player.isDead)
             sc.ChangeScene("GameOver");
     }
 
