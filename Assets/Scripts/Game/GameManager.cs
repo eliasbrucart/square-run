@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour
     private const int secondScoreToIncreaseSpeed = 10;
     private const int thirdScoreToIncreaseSpeed = 15;
     private const int fourthScoreToIncreaseSpeed = 20;
+    private const float increaseSpeedValue = 0.5f;
 
     private void Awake()
     {
@@ -56,8 +58,9 @@ public class GameManager : MonoBehaviour
                 obstaclesInMap[i].canMove = true;
         }
         if (startGame)
+        {
             timer += Time.deltaTime;
-        Debug.Log(timerWaitTime);
+        }
         CheckGameOver();
     }
 
@@ -66,7 +69,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < obstaclesInMap.Count; i++)
         {
             if (obstaclesInMap[i] != null)
-                obstaclesInMap[i].speed += 0.5f;
+                obstaclesInMap[i].speed += increaseSpeedValue;
         }
     }
 
@@ -74,7 +77,11 @@ public class GameManager : MonoBehaviour
     {
         score += coinValue;
         if (score == firstScoreToIncreaseSpeed || score == secondScoreToIncreaseSpeed || score == thirdScoreToIncreaseSpeed || score == fourthScoreToIncreaseSpeed)
+        {
             IncreaseGameplaySpeed();
+            //SpawnCoinEvent?.Invoke();
+        }
+        //agregar otro timer para que la moneda dependiendo del tiempo spawnee mas veces
     }
 
     private void CheckGameOver()

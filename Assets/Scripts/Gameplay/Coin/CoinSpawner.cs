@@ -15,6 +15,7 @@ public class CoinSpawner : MonoBehaviour
     void Start()
     {
         timerToSpawnCoin = 0.0f;
+        Player.PlayerGetCoin += RandomTimeSpawn;
     }
     void Update()
     {
@@ -31,5 +32,18 @@ public class CoinSpawner : MonoBehaviour
     {
         if (coinPrefab != null)
             Instantiate(coinPrefab, new Vector3(startPosX, startPosY, 0.0f), transform.rotation);
+    }
+
+    private void RandomTimeSpawn()
+    {
+        int newTimeToSpawnCoin = Random.Range(5, 12);
+        if(timeToSpawnCoin != newTimeToSpawnCoin)
+            timeToSpawnCoin = newTimeToSpawnCoin;
+        timerToSpawnCoin = 0.0f;
+    }
+
+    private void OnDisable()
+    {
+        Player.PlayerGetCoin -= RandomTimeSpawn;
     }
 }

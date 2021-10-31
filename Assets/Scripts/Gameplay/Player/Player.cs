@@ -44,6 +44,8 @@ public class Player : MonoBehaviour
             Debug.Log("IsTrigger");
         }
         if (collision.gameObject.CompareTag("Coin"))
+        {
             PlayerGetCoin?.Invoke();
+        }
     }
 }

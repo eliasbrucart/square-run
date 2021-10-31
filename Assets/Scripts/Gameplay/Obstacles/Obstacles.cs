@@ -36,7 +36,6 @@ public class Obstacles : MonoBehaviour
         if (transform.position.y <= -7.81f)
         {
             float posX = 1;
-            Debug.Log(random);
             switch (random)
             {
                 case 1:
