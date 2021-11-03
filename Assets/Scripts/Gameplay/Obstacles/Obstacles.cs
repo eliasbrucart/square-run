@@ -5,6 +5,8 @@ public class Obstacles : MonoBehaviour
     [SerializeField] public float speed;
     [SerializeField] private float maxPosY;
     [SerializeField] private float minPosY;
+    [SerializeField] private float minPosX;
+    [SerializeField] private float maxPosX;
     private const float possiblePosXOne = 2.006f;
     private const float possiblePosXTwo = 1.5081f;
     private const float possiblePosXThree = 2.0056f;
@@ -12,22 +14,41 @@ public class Obstacles : MonoBehaviour
     private const float possiblePosXFive = -1.495f;
     private const float possiblePosXSix = -1.995f;
     public bool canMove;
+    private Vector3 direction;
 
     private void Start()
     {
         canMove = false;
+        int randomInitialDirection = Random.Range(0, 2);
+        if (randomInitialDirection == 1)
+            direction = transform.right;
+        else
+            direction = -transform.right;
     }
 
     void Update()
     {
         Move();
-        UpdatePosition();
+        if(gameObject.tag != "Obstacle4")
+            UpdatePosition();
     }
 
     private void Move()
     {
-        if(canMove)
+        if (canMove)
+        {
             transform.position += Vector3.down * speed * Time.deltaTime;
+            if (gameObject.tag == "Obstacle4")
+                transform.position += direction * speed * Time.deltaTime;
+            if (gameObject.tag == "Obstacle4" && transform.position.x >= maxPosX)
+            {
+                direction *= -1;
+            }
+            else if (gameObject.tag == "Obstacle4" && transform.position.x <= minPosX)
+            {
+                direction *= -1;
+            }
+        }
     }
 
     private void UpdatePosition()
