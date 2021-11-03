@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Obstacle1") || collision.gameObject.CompareTag("Obstacle2") || collision.gameObject.CompareTag("Obstacle3"))
+        if (collision.gameObject.CompareTag("Obstacle1") || collision.gameObject.CompareTag("Obstacle2") || collision.gameObject.CompareTag("Obstacle3") || collision.gameObject.CompareTag("Obstacle4"))
         {
             isDead = true;
             PlayerDie?.Invoke();
