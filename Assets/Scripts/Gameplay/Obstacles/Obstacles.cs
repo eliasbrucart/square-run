@@ -29,8 +29,7 @@ public class Obstacles : MonoBehaviour
     void Update()
     {
         Move();
-        if(gameObject.tag != "Obstacle4")
-            UpdatePosition();
+        UpdatePosition();
     }
 
     private void Move()
@@ -60,7 +59,7 @@ public class Obstacles : MonoBehaviour
             switch (random)
             {
                 case 1:
-                    if(gameObject.tag == "Obstacle1")
+                    if (gameObject.tag == "Obstacle1")
                         posX = possiblePosXOne;
                     else if (gameObject.tag == "Obstacle2")
                         posX = possiblePosXTwo;
@@ -68,7 +67,7 @@ public class Obstacles : MonoBehaviour
                         posX = possiblePosXThree;
                     break;
                 case 2:
-                    if(gameObject.tag == "Obstacle1")
+                    if (gameObject.tag == "Obstacle1")
                         posX = possiblePosXFour;
                     else if (gameObject.tag == "Obstacle2")
                         posX = possiblePosXFive;
@@ -78,8 +77,17 @@ public class Obstacles : MonoBehaviour
                 default:
                     break;
             }
-            transform.position = new Vector3(posX, maxPosY, 0.0f);
+            if(gameObject.tag != "Obstacle4")
+                Reposition(posX, maxPosY);
+            else
+                Reposition(0.0f, maxPosY);
         }
+    }
+
+    private void Reposition(float posX, float maxPosY)
+    {
+        transform.position = new Vector3(posX, maxPosY, 0.0f);
+
     }
 
     public float GetSpeed()
