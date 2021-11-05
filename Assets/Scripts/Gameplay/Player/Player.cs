@@ -26,13 +26,12 @@ public class Player : MonoBehaviour
     {
         if (canMove)
         {
-            if (transform.position.x >= 2.68f)
-                transform.position = new Vector3(maxPosX, posY, 0.0f);
-            if (transform.position.x <= -2.68f)
-                transform.position = new Vector3(minPosX, posY, 0.0f);
             float horizontal = Input.GetAxis("Horizontal");
             Vector3 direction = new Vector3(horizontal, 0.0f, 0.0f);
-            transform.position += direction * speed * Time.deltaTime;
+            if(Input.GetAxis("Horizontal") > 0 && transform.position.x <= maxPosX)
+                transform.position += direction * speed * Time.deltaTime;
+            if(Input.GetAxis("Horizontal") < 0 && transform.position.x >= minPosX)
+                transform.position += direction * speed * Time.deltaTime;
         }
     }
 
