@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<Obstacles> obstaclesInMap = new List<Obstacles>();
     private ScenesManager sc;
     private bool startGame;
-    private float timerWaitTime;
+    public float timerWaitTime;
 
     static public GameManager instanceGameManager;
     static public GameManager Instance { get { return instanceGameManager; } }

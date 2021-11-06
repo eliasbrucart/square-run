@@ -29,7 +29,7 @@ public class Coin : MonoBehaviour
 
     private void DestroyActualInstance()
     {
-        Destroy(this.gameObject);
+        Destroy(coinSpawner.actualInstance.gameObject);
     }
 
     private void OnDisable()
