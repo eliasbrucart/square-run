@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 3260191362196024814}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.694, y: -4.77, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3.1509619, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -98,6 +98,9 @@ MonoBehaviour:
   speed: 3
   maxPosY: 7.81
   minPosY: -7.81
+  minPosX: 0
+  maxPosX: 0
+  canMove: 0
 --- !u!61 &5234699476381039931
 BoxCollider2D:
   m_ObjectHideFlags: 0

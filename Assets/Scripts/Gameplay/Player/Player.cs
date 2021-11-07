@@ -45,6 +45,7 @@ public class Player : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Coin"))
         {
+            collision.gameObject.SetActive(false);
             PlayerGetCoin?.Invoke();
         }
     }

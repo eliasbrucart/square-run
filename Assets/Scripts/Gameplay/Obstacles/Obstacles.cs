@@ -18,6 +18,7 @@ public class Obstacles : MonoBehaviour
 
     private void Start()
     {
+        //ObjectPooler.Instance.SpawnFromPool("Obstacle1", transform.position, Quaternion.identity);
         canMove = false;
         int randomInitialDirection = Random.Range(0, 2);
         if (randomInitialDirection == 1)
@@ -87,7 +88,6 @@ public class Obstacles : MonoBehaviour
     private void Reposition(float posX, float maxPosY)
     {
         transform.position = new Vector3(posX, maxPosY, 0.0f);
-
     }
 
     public float GetSpeed()

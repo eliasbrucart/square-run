@@ -9,20 +9,13 @@ public class CoinSpawner : MonoBehaviour
     public float startPosY;
     public float endPosX;
     public float endPosY;
-    public Coin actualInstance;
     [SerializeField] private int countMaxCoinInstance;
-    [SerializeField] private GameObject coinPrefab;
     [SerializeField] private int timeToSpawnCoin;
-    private int maxCoinInstance;
     private float timerToSpawnCoin;
-    private bool canInstanceOneCoin;
     void Start()
     {
         timerToSpawnCoin = 0.0f;
         Player.PlayerGetCoin += RandomTimeSpawn;
-        Player.PlayerGetCoin += DecreaseMaxCoinInstance;
-        maxCoinInstance = 0;
-        canInstanceOneCoin = true;
     }
     void Update()
     {
@@ -37,17 +30,10 @@ public class CoinSpawner : MonoBehaviour
 
     private void Spawn()
     {
-        if (coinPrefab != null && canInstanceOneCoin)
-        {
-            GameObject GO = Instantiate(coinPrefab, new Vector3(startPosX, startPosY, 0.0f), transform.rotation);
-            actualInstance = GO.GetComponent<Coin>();
-            maxCoinInstance++;
-            MaxCoinInstanceAlive();
-            Debug.Log("Max coin instance: " + maxCoinInstance);
-        }
+        ObjectPooler.Instance.SpawnFromPool("Coin", new Vector3(startPosX, startPosY, 0.0f), transform.rotation);
     }
 
-    private void RandomTimeSpawn()
+    public void RandomTimeSpawn()
     {
         int newTimeToSpawnCoin = Random.Range(5, 12);
         if(timeToSpawnCoin != newTimeToSpawnCoin)
@@ -55,24 +41,8 @@ public class CoinSpawner : MonoBehaviour
         timerToSpawnCoin = 0.0f;
     }
 
-    private void MaxCoinInstanceAlive()
-    {
-        if (maxCoinInstance == countMaxCoinInstance)
-            canInstanceOneCoin = false;
-    }
-
-    private void DecreaseMaxCoinInstance()
-    {
-        if(maxCoinInstance > 0 && maxCoinInstance <= countMaxCoinInstance)
-        {
-            maxCoinInstance--;
-            canInstanceOneCoin = true;
-        }
-    }
-
     private void OnDisable()
     {
         Player.PlayerGetCoin -= RandomTimeSpawn;
-        Player.PlayerGetCoin -= DecreaseMaxCoinInstance;
     }
 }
