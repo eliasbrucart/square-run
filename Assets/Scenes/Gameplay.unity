@@ -155,8 +155,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 242.7, y: 829.1}
-  m_SizeDelta: {x: 211.19998, y: 75.50006}
+  m_AnchoredPosition: {x: 207, y: 778}
+  m_SizeDelta: {x: 246.06104, y: 101.645966}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &48446039
 MonoBehaviour:
@@ -520,8 +520,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -286, y: 823}
-  m_SizeDelta: {x: 200, y: 100}
+  m_AnchoredPosition: {x: -202.8, y: 775.4}
+  m_SizeDelta: {x: 366.37384, y: 195.22028}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &822372797
 MonoBehaviour:
@@ -689,8 +689,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 170.9, y: 827.6}
-  m_SizeDelta: {x: 50, y: 50}
+  m_AnchoredPosition: {x: 43, y: 778}
+  m_SizeDelta: {x: 70.42806, y: 71.44961}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1376559465
 MonoBehaviour:
@@ -763,8 +763,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 269.3, y: 828.2}
-  m_SizeDelta: {x: 200, y: 100}
+  m_AnchoredPosition: {x: 203, y: 775.4}
+  m_SizeDelta: {x: 365.66522, y: 195.22266}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1449385914
 MonoBehaviour:
@@ -1541,24 +1541,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 239557866, guid: df9e456f3dc4514429a192972532a63a, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 738927914116240681, guid: df9e456f3dc4514429a192972532a63a,
-        type: 3}
-      propertyPath: maxPosY
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 919033926749104433, guid: df9e456f3dc4514429a192972532a63a,
         type: 3}
       propertyPath: m_Name
       value: Obstacle ball
-      objectReference: {fileID: 0}
-    - target: {fileID: 919033926749104433, guid: df9e456f3dc4514429a192972532a63a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919033926749104435, guid: df9e456f3dc4514429a192972532a63a,
         type: 3}

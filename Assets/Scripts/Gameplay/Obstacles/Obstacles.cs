@@ -18,7 +18,6 @@ public class Obstacles : MonoBehaviour
 
     private void Start()
     {
-        //ObjectPooler.Instance.SpawnFromPool("Obstacle1", transform.position, Quaternion.identity);
         canMove = false;
         int randomInitialDirection = Random.Range(0, 2);
         if (randomInitialDirection == 1)
@@ -42,10 +41,12 @@ public class Obstacles : MonoBehaviour
                 transform.position += direction * speed * Time.deltaTime;
             if (gameObject.tag == "Obstacle4" && transform.position.x >= maxPosX)
             {
+                transform.position = new Vector3(maxPosX, transform.position.y, 0.0f);
                 direction *= -1;
             }
             else if (gameObject.tag == "Obstacle4" && transform.position.x <= minPosX)
             {
+                transform.position = new Vector3(minPosX, transform.position.y, 0.0f);
                 direction *= -1;
             }
         }
@@ -54,9 +55,9 @@ public class Obstacles : MonoBehaviour
     private void UpdatePosition()
     {
         int random = Random.Range(1, 3);
-        if (transform.position.y <= -7.81f)
+        if (transform.position.y <= minPosY)
         {
-            float posX = 1;
+            float posX = 1.0f;
             switch (random)
             {
                 case 1:
@@ -89,10 +90,4 @@ public class Obstacles : MonoBehaviour
     {
         transform.position = new Vector3(posX, maxPosY, 0.0f);
     }
-
-    public float GetSpeed()
-    {
-        return speed;
-    }
-
 }

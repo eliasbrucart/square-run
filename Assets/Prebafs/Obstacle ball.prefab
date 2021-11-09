@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  maxPosY: 7.81
+  maxPosY: 22
   minPosY: -7.81
   minPosX: -2.49
   maxPosX: 2.49
