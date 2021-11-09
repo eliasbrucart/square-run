@@ -1546,6 +1546,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obstacle ball
       objectReference: {fileID: 0}
+    - target: {fileID: 919033926749104433, guid: df9e456f3dc4514429a192972532a63a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919033926749104435, guid: df9e456f3dc4514429a192972532a63a,
         type: 3}
       propertyPath: m_RootOrder
@@ -1669,6 +1674,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Obstacle1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3260191362196024814, guid: 06912bf5e85d4e7439f15e7d8bd3b8f9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06912bf5e85d4e7439f15e7d8bd3b8f9, type: 3}
@@ -1813,10 +1823,45 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4919650890296063453, guid: 6cc89a07a9880514dadca40e086131a6,
+        type: 3}
+      propertyPath: color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4919650890296063453, guid: 6cc89a07a9880514dadca40e086131a6,
+        type: 3}
+      propertyPath: color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4919650890296063453, guid: 6cc89a07a9880514dadca40e086131a6,
+        type: 3}
+      propertyPath: color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4919650890296063453, guid: 6cc89a07a9880514dadca40e086131a6,
+        type: 3}
+      propertyPath: colorLerpTime
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5578614238934392353, guid: 6cc89a07a9880514dadca40e086131a6,
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5578614238934392354, guid: 6cc89a07a9880514dadca40e086131a6,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5578614238934392354, guid: 6cc89a07a9880514dadca40e086131a6,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5578614238934392354, guid: 6cc89a07a9880514dadca40e086131a6,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5578614238934392355, guid: 6cc89a07a9880514dadca40e086131a6,
         type: 3}

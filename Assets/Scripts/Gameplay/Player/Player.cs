@@ -7,6 +7,9 @@ public class Player : MonoBehaviour
     [SerializeField] private float maxPosX;
     [SerializeField] private float minPosX;
     [SerializeField] private float posY;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private Color color;
+    [SerializeField] [Range(0.1f, 1.0f)] private float colorLerpTime;
     public bool isDead;
     public bool canMove;
     static public event Action PlayerDie;
@@ -15,6 +18,7 @@ public class Player : MonoBehaviour
     {
         isDead = false;
         canMove = false;
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -48,5 +52,10 @@ public class Player : MonoBehaviour
             collision.gameObject.SetActive(false);
             PlayerGetCoin?.Invoke();
         }
+    }
+
+    public void ChangeColor(Color changingColor)
+    {
+        spriteRenderer.material.color = Color.Lerp(color, changingColor, colorLerpTime);
     }
 }

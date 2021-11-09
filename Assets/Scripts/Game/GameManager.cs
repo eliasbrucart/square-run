@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -23,6 +22,8 @@ public class GameManager : MonoBehaviour
     private const int thirdScoreToIncreaseSpeed = 15;
     private const int fourthScoreToIncreaseSpeed = 20;
     private const float increaseSpeedValue = 0.5f;
+
+    //static public event Action<Color> ChangePlayerColor;
 
     private void Awake()
     {
@@ -79,7 +80,7 @@ public class GameManager : MonoBehaviour
         if (score == firstScoreToIncreaseSpeed || score == secondScoreToIncreaseSpeed || score == thirdScoreToIncreaseSpeed || score == fourthScoreToIncreaseSpeed)
         {
             IncreaseGameplaySpeed();
-            //SpawnCoinEvent?.Invoke();
+            RandomPlayerColor();
         }
         //agregar otro timer para que la moneda dependiendo del tiempo spawnee mas veces
     }
@@ -88,6 +89,17 @@ public class GameManager : MonoBehaviour
     {
         if (player.isDead)
             sc.ChangeScene("GameOver");
+    }
+
+    private void RandomPlayerColor()
+    {
+        int randomColor = Random.Range(1, 3);
+        if (randomColor == 1)
+            player.ChangeColor(Color.blue);
+        else if (randomColor == 2)
+            player.ChangeColor(Color.cyan);
+        else if (randomColor == 3)
+            player.ChangeColor(Color.magenta);
     }
 
     private void OnDisable()
