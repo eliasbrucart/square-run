@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Coin coin;
     [SerializeField] private List<Obstacles> obstaclesInMap = new List<Obstacles>();
     private ScenesManager sc;
+    private SquareLoggerImpl squarePluginImpl;
     private bool startGame;
     public float timerWaitTime;
 
@@ -35,13 +36,14 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        squarePluginImpl = SquareLoggerImpl.instanceSquareLoggerImpl;
         sc = ScenesManager.instanceScenesManager;
         Player.PlayerDie += CheckGameOver;
         Player.PlayerGetCoin += IncreasePoints;
         timer = 0.0f;
         timerWaitTime = 0.0f;
         startGame = false;
-        SquareLoggerImpl.SendLog("Holi");
+        squarePluginImpl.SendLog("Holi");
     }
 
     void Update()

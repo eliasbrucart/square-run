@@ -22,7 +22,7 @@ public class SquareManager {
     }
 
     public void SaveLogs(){
-        File file;
+
     }
 
     public void SaveScore(int score){
@@ -31,8 +31,7 @@ public class SquareManager {
 
         try{
             FileOutputStream stream = new FileOutputStream(file);
-            try
-            {
+            try {
                 stream.write(Integer.toString(score).getBytes());
             }
             finally {
