@@ -32,10 +32,42 @@ public class SquareLoggerImpl : MonoBehaviour
         SLoggerInstance = SLoggerClass.CallStatic<AndroidJavaObject>("GetInstance");
     }
 
+    public static AndroidJavaClass PluginClass
+    {
+        get
+        {
+            if(SLoggerClass == null)
+            {
+                SLoggerClass = new AndroidJavaClass(PACK_NAME + "." + LOGGER_CLASS_NAME);
+                AndroidJavaClass unityJava = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+                AndroidJavaObject activity = unityJava.GetStatic<AndroidJavaObject>("currentActivity");
+                SLoggerClass.SetStatic("mainActivity", activity);
+            }
+            return SLoggerClass;
+        }
+    }
+
+    public AndroidJavaObject PluginInstance
+    {
+        get
+        {
+            if(SLoggerInstance == null)
+            {
+                SLoggerInstance = PluginClass.CallStatic<AndroidJavaObject>("GetInstance");
+            }
+            return SLoggerInstance;
+        }
+    }
+
     public void SendLog(string log)
     {
         if (SLoggerInstance == null)
             Init();
         SLoggerInstance.Call("SendLog", log);
+    }
+
+    public void SaveMaxScore(int score)
+    {
+        PluginInstance.Call("SaveScore", score);
     }
 }

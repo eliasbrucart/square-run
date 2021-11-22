@@ -79,6 +79,7 @@ public class GameManager : MonoBehaviour
     private void IncreasePoints()
     {
         score += coinValue;
+        SquareLoggerImpl.instanceSquareLoggerImpl.SaveMaxScore(score);
         if (score == firstScoreToIncreaseSpeed || score == secondScoreToIncreaseSpeed || score == thirdScoreToIncreaseSpeed || score == fourthScoreToIncreaseSpeed)
         {
             IncreaseGameplaySpeed();
