@@ -19,11 +19,19 @@ public class Player : MonoBehaviour
         isDead = false;
         canMove = false;
         spriteRenderer = GetComponent<SpriteRenderer>();
+        LongClickButton.MovePlayerDirection += MovePlayer;
+    }
+
+    private void OnDisable()
+    {
+        LongClickButton.MovePlayerDirection -= MovePlayer;
     }
 
     void Update()
     {
+#if UNITY_EDITOR || UNITY_STANDALONE
         Move();
+#endif
     }
 
     private void Move()
@@ -36,6 +44,34 @@ public class Player : MonoBehaviour
                 transform.position += direction * speed * Time.deltaTime;
             if(Input.GetAxis("Horizontal") < 0 && transform.position.x >= minPosX)
                 transform.position += direction * speed * Time.deltaTime;
+        }
+    }
+
+    public void MovePlayer(string dir)
+    {
+        if (canMove)
+        {
+            Vector3 direction = Vector3.right;
+            if(dir == "right")
+            {
+                if(transform.position.x <= maxPosX)
+                    transform.position += direction * speed * Time.deltaTime;
+            }
+            else
+            {
+                if (transform.position.x >= minPosX)
+                    transform.position -= direction * speed * Time.deltaTime;
+            }
+        }
+    }
+
+    public void MovePlayerLeft()
+    {
+        if (canMove)
+        {
+            Vector3 direction = Vector3.right;
+            if (transform.position.x >= minPosX)
+                transform.position -= direction * speed * Time.deltaTime;
         }
     }
 

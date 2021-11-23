@@ -9,6 +9,8 @@ TagManager:
   - Obstacle3
   - Coin
   - Obstacle4
+  - buttonRight
+  - buttonLeft
   layers:
   - Default
   - TransparentFX

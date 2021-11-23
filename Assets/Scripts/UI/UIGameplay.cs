@@ -1,11 +1,15 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class UIGameplay : MonoBehaviour
 {
     public TMP_Text timerText;
     public TMP_Text scoreText;
     public TMP_Text waitTimer;
+    public Button leftButton;
+    public Button rigthButton;
     private GameManager gm;
     void Start()
     {
