@@ -13,6 +13,7 @@ public class UIGameplay : MonoBehaviour
     void Start()
     {
         gm = GameManager.instanceGameManager;
+        Time.timeScale = 1;
     }
 
     void Update()
