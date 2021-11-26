@@ -84,6 +84,7 @@ public class Player : MonoBehaviour
 #if UNITY_ANDROID
             Handheld.Vibrate();
 #endif
+
             Debug.Log("IsTrigger");
         }
         if (collision.gameObject.CompareTag("Coin"))

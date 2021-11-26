@@ -31,7 +31,6 @@ public class PlayGames : MonoBehaviour
                 Debug.Log("Login Failed");
             }
         });
-        UnlockAchievement();
     }
 
     public void AddScoreToLeaderboard()

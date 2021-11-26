@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Player player;
     [SerializeField] private Coin coin;
     [SerializeField] private List<Obstacles> obstaclesInMap = new List<Obstacles>();
+    [SerializeField] private PlayGames playGames;
     private ScenesManager sc;
     private SquareLoggerImpl squarePluginImpl;
     private bool startGame;
@@ -79,7 +80,9 @@ public class GameManager : MonoBehaviour
     private void IncreasePoints()
     {
         score += coinValue;
-        SquareLoggerImpl.instanceSquareLoggerImpl.SaveMaxScore(score);
+        if (score == firstScoreToIncreaseSpeed)
+            playGames.UnlockAchievement();
+        //SquareLoggerImpl.instanceSquareLoggerImpl.SaveMaxScore(score);
         if (score == firstScoreToIncreaseSpeed || score == secondScoreToIncreaseSpeed || score == thirdScoreToIncreaseSpeed || score == fourthScoreToIncreaseSpeed)
         {
             IncreaseGameplaySpeed();
