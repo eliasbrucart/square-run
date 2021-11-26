@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -80,18 +81,26 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Obstacle1") || collision.gameObject.CompareTag("Obstacle2") || collision.gameObject.CompareTag("Obstacle3") || collision.gameObject.CompareTag("Obstacle4"))
         {
             isDead = true;
-            PlayerDie?.Invoke();
+            //PlayerDie?.Invoke();
+            StartCoroutine(WaitForPlayerDie());
 #if UNITY_ANDROID
             Handheld.Vibrate();
 #endif
-
             Debug.Log("IsTrigger");
         }
         if (collision.gameObject.CompareTag("Coin"))
         {
             collision.gameObject.SetActive(false);
+            AudioManager.instanceAudioManager.sfxSound.Play();
             PlayerGetCoin?.Invoke();
         }
+    }
+
+    private IEnumerator WaitForPlayerDie()
+    {
+        yield return new WaitForSeconds(0.7f);
+        PlayerDie?.Invoke();
+        yield return null;
     }
 
     public void ChangeColor(Color changingColor)

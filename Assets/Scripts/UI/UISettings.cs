@@ -14,7 +14,7 @@ public class UISettings : MonoBehaviour
     void Update()
     {
         if (panelPluginLogs.activeSelf)
-            pluginLogs.text = "" + SquareLoggerImpl.instanceSquareLoggerImpl.GetMaxScore();
+            pluginLogs.text = "" + SquareLoggerImpl.GetInstance().GetMaxScore();
     }
 
     public void ActivateLogs()

@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        squarePluginImpl = SquareLoggerImpl.instanceSquareLoggerImpl;
+        squarePluginImpl = SquareLoggerImpl.GetInstance();
         sc = ScenesManager.instanceScenesManager;
         Player.PlayerDie += CheckGameOver;
         Player.PlayerGetCoin += IncreasePoints;

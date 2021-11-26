@@ -9,7 +9,7 @@ public class UIGameOver : MonoBehaviour
     void Start()
     {
         gm = GameManager.instanceGameManager;
-        SquareLoggerImpl.instanceSquareLoggerImpl.SaveMaxScore(gm.score);
+        SquareLoggerImpl.GetInstance().SaveMaxScore(gm.score);
     }
 
     void Update()
