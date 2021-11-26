@@ -42,4 +42,34 @@ public class SquareManager {
             Log.e("Exception", "Error: the file could not be recorded" + e.toString());
         }
     }
+
+    public int GetScore(){
+        File path = activity.getFilesDir();
+
+        File file = new File(path, "score.txt");
+        if (!file.exists()) return 0;
+
+        int length = (int) file.length();
+        byte[] bytes = new byte[length];
+
+        try
+        {
+            FileInputStream stream = new FileInputStream(file);
+            try
+            {
+                stream.read(bytes);
+            }
+            finally
+            {
+                stream.close();
+            }
+        }
+        catch (IOException e)
+        {
+            Log.e("Exception", "File write failed: " + e.toString());
+        }
+
+        String maxScore = new String(bytes);
+        return Integer.parseInt(maxScore);
+    }
 }

@@ -41,7 +41,7 @@ public class SquareLoggerImpl : MonoBehaviour
                 SLoggerClass = new AndroidJavaClass(PACK_NAME + "." + LOGGER_CLASS_NAME);
                 AndroidJavaClass unityJava = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
                 AndroidJavaObject activity = unityJava.GetStatic<AndroidJavaObject>("currentActivity");
-                SLoggerClass.SetStatic("mainActivity", activity);
+                SLoggerClass.SetStatic("activity", activity);
             }
             return SLoggerClass;
         }
@@ -69,5 +69,10 @@ public class SquareLoggerImpl : MonoBehaviour
     public void SaveMaxScore(int score)
     {
         PluginInstance.Call("SaveScore", score);
+    }
+
+    public int GetMaxScore()
+    {
+        return PluginInstance.Call<int>("GetScore");
     }
 }
