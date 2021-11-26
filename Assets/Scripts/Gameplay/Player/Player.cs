@@ -81,6 +81,9 @@ public class Player : MonoBehaviour
         {
             isDead = true;
             PlayerDie?.Invoke();
+#if UNITY_ANDROID
+            Handheld.Vibrate();
+#endif
             Debug.Log("IsTrigger");
         }
         if (collision.gameObject.CompareTag("Coin"))
