@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
         {
             timer += Time.deltaTime;
         }
-        CheckGameOver();
+        CheckGameOver(); //Mover a un evento que se llame cuando el player choca con un obstaculo.
     }
 
     private void IncreaseGameplaySpeed()
