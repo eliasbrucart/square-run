@@ -3616,6 +3616,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1104204802195299597, guid: 5520077008afd944c833728420913289,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.drawMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1104204802195299597, guid: 5520077008afd944c833728420913289,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 0.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 1104204802195299597, guid: 5520077008afd944c833728420913289,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 1.2840223
+      objectReference: {fileID: 0}
+    - target: {fileID: 1104204802195299597, guid: 5520077008afd944c833728420913289,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 1104204802195299597, guid: 5520077008afd944c833728420913289,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.28
+      objectReference: {fileID: 0}
     - target: {fileID: 3571858772693784699, guid: 5520077008afd944c833728420913289,
         type: 3}
       propertyPath: m_Name
@@ -3728,13 +3753,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3571858774268580087, guid: 5520077008afd944c833728420913289,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3571858774268580087, guid: 5520077008afd944c833728420913289,
+        type: 3}
       propertyPath: m_LocalScale.y
-      value: 12.900394
+      value: 12.940928
       objectReference: {fileID: 0}
     - target: {fileID: 3571858774268580087, guid: 5520077008afd944c833728420913289,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.153
+      value: 0.171
+      objectReference: {fileID: 0}
+    - target: {fileID: 3571858774268580088, guid: 5520077008afd944c833728420913289,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.2840223
+      objectReference: {fileID: 0}
+    - target: {fileID: 3571858774268580088, guid: 5520077008afd944c833728420913289,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: fc6512ca8f2b2e846a307ed1a6ebe72b,
+        type: 3}
+    - target: {fileID: 3571858774268580088, guid: 5520077008afd944c833728420913289,
+        type: 3}
+      propertyPath: m_DrawMode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5520077008afd944c833728420913289, type: 3}
