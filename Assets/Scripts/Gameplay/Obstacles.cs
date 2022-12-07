@@ -7,12 +7,12 @@ public class Obstacles : MonoBehaviour
     [SerializeField] private float minPosY;
     [SerializeField] private float minPosX;
     [SerializeField] private float maxPosX;
-    private const float possiblePosXOne = 2.006f;
-    private const float possiblePosXTwo = 1.5081f;
-    private const float possiblePosXThree = 2.0056f;
-    private const float possiblePosXFour = -1.9972f;
-    private const float possiblePosXFive = -1.495f;
-    private const float possiblePosXSix = -1.995f;
+    private const float possiblePosXOne = 1.34f;
+    private const float possiblePosXTwo = 1.7f;
+    private const float possiblePosXThree = 1.49f;
+    private const float possiblePosXFour = -1.37f;
+    private const float possiblePosXFive = -1.7f;
+    private const float possiblePosXSix = -1.53f;
     public bool canMove;
     private Vector3 direction;
 
