@@ -9,7 +9,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int coinValue;
     [SerializeField] private Player player;
     [SerializeField] private Coin coin;
-    [SerializeField] private List<Obstacles> obstaclesInMap = new List<Obstacles>();
+    //[SerializeField] private List<WallObstacle> obstaclesInMap = new List<WallObstacle>();
+    [SerializeField] private ObstacleManager obstacleManager;
     [SerializeField] private PlayGames playGames;
     private ScenesManager sc;
     private SquareLoggerImpl squarePluginImpl;
@@ -58,8 +59,8 @@ public class GameManager : MonoBehaviour
             timerWaitTime = 0.0f;
             startGame = true;
             player.canMove = true;
-            for (int i = 0; i < obstaclesInMap.Count; i++)
-                obstaclesInMap[i].canMove = true;
+            for (int i = 0; i < obstacleManager.GetWallObstacles.Count; i++)
+                obstacleManager.GetWallObstacles[i].canMove = true;
         }
         if (startGame)
         {
@@ -70,10 +71,10 @@ public class GameManager : MonoBehaviour
 
     private void IncreaseGameplaySpeed()
     {
-        for (int i = 0; i < obstaclesInMap.Count; i++)
+        for (int i = 0; i < obstacleManager.GetWallObstacles.Count; i++)
         {
-            if (obstaclesInMap[i] != null)
-                obstaclesInMap[i].speed += increaseSpeedValue;
+            if (obstacleManager.GetWallObstacles[i] != null)
+                obstacleManager.GetWallObstacles[i].speed += increaseSpeedValue;
         }
     }
 
