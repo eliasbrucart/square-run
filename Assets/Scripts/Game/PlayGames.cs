@@ -5,7 +5,6 @@ using TMPro;
 
 public class PlayGames : MonoBehaviour
 {
-    public TMP_Text playerScore = null;
     string leaderboardID = "CgkIqfmmyPsTEAIQAg";
     string achievementID = "CgkIqfmmyPsTEAIQAQ";
     public static PlayGamesPlatform platform;
@@ -13,6 +12,8 @@ public class PlayGames : MonoBehaviour
     static public PlayGames instancePlayGames;
 
     static public PlayGames GetInstancePlayGames { get { return instancePlayGames; } }
+
+    private GameManager gameManager;
 
     private void Awake()
     {
@@ -24,6 +25,7 @@ public class PlayGames : MonoBehaviour
 
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
         if (platform == null)
         {
             PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
@@ -49,7 +51,7 @@ public class PlayGames : MonoBehaviour
     {
         if (Social.Active.localUser.authenticated)
         {
-            Social.ReportScore(int.Parse(playerScore.text), leaderboardID, success => { });
+            Social.ReportScore(gameManager.score, leaderboardID, success => { });
         }
     }
 
