@@ -102,7 +102,10 @@ public class GameManager : MonoBehaviour
     private void CheckGameOver()
     {
         if (player.isDead)
+        {
             sceneManager.ChangeScene("GameOver");
+            playGames.AddScoreToLeaderboard();
+        }
     }
 
     private void RandomPlayerColor()

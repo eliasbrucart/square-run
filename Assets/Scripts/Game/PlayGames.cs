@@ -5,10 +5,22 @@ using TMPro;
 
 public class PlayGames : MonoBehaviour
 {
-    public TMP_Text playerScore;
+    public TMP_Text playerScore = null;
     string leaderboardID = "CgkIqfmmyPsTEAIQAg";
     string achievementID = "CgkIqfmmyPsTEAIQAQ";
     public static PlayGamesPlatform platform;
+
+    static public PlayGames instancePlayGames;
+
+    static public PlayGames GetInstancePlayGames { get { return instancePlayGames; } }
+
+    private void Awake()
+    {
+        if (instancePlayGames != null && instancePlayGames != this)
+            Destroy(this.gameObject);
+        else
+            instancePlayGames = this;
+    }
 
     void Start()
     {
