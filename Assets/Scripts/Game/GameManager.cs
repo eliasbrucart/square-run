@@ -12,10 +12,13 @@ public class GameManager : MonoBehaviour
     //[SerializeField] private List<WallObstacle> obstaclesInMap = new List<WallObstacle>();
     [SerializeField] private ObstacleManager obstacleManager;
     [SerializeField] private PlayGames playGames;
-    private ScenesManager sc;
+    private ScenesManager sceneManager;
     private SquareLoggerImpl squarePluginImpl;
     private bool startGame;
+    private float timerToSpeedUpGameplay;
+
     public float timerWaitTime;
+    public int timeToSpeedUpGameplay;
 
     static public GameManager instanceGameManager;
     static public GameManager Instance { get { return instanceGameManager; } }
@@ -24,7 +27,7 @@ public class GameManager : MonoBehaviour
     private const int secondScoreToIncreaseSpeed = 10;
     private const int thirdScoreToIncreaseSpeed = 15;
     private const int fourthScoreToIncreaseSpeed = 20;
-    private const float increaseSpeedValue = 0.5f;
+    private const float increaseSpeedValue = 1.0f;
 
     //static public event Action<Color> ChangePlayerColor;
 
@@ -39,11 +42,12 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         squarePluginImpl = SquareLoggerImpl.GetInstance();
-        sc = ScenesManager.instanceScenesManager;
+        sceneManager = ScenesManager.instanceScenesManager;
         Player.PlayerDie += CheckGameOver;
         Player.PlayerGetCoin += IncreasePoints;
         timer = 0.0f;
         timerWaitTime = 0.0f;
+        timerToSpeedUpGameplay = 0.0f;
         startGame = false;
         squarePluginImpl.SendLog("Holi");
     }
@@ -51,9 +55,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         if (timerWaitTime <= waitTime)
-        {
             timerWaitTime += Time.deltaTime;
-        }
         else
         {
             timerWaitTime = 0.0f;
@@ -65,6 +67,9 @@ public class GameManager : MonoBehaviour
         if (startGame)
         {
             timer += Time.deltaTime;
+            if (timerToSpeedUpGameplay <= timeToSpeedUpGameplay)
+                timerToSpeedUpGameplay += Time.deltaTime;
+            CheckTimerSpeedUpGameplay();
         }
         CheckGameOver(); //Mover a un evento que se llame cuando el player choca con un obstaculo.
     }
@@ -84,18 +89,20 @@ public class GameManager : MonoBehaviour
         if (score == firstScoreToIncreaseSpeed)
             playGames.UnlockAchievement();
         //SquareLoggerImpl.instanceSquareLoggerImpl.SaveMaxScore(score);
-        if (score == firstScoreToIncreaseSpeed || score == secondScoreToIncreaseSpeed || score == thirdScoreToIncreaseSpeed || score == fourthScoreToIncreaseSpeed)
-        {
-            IncreaseGameplaySpeed();
-            RandomPlayerColor();
-        }
+        //if (score == firstScoreToIncreaseSpeed || score == secondScoreToIncreaseSpeed || score == thirdScoreToIncreaseSpeed || score == fourthScoreToIncreaseSpeed)
+        //if(timerToSpeedUpGameplay >= timeToSpeedUpGameplay)
+        //{
+        //    IncreaseGameplaySpeed();
+        //    ResetTimerToSpeedUpGameplay();
+        //    RandomPlayerColor();
+        //}
         //agregar otro timer para que la moneda dependiendo del tiempo spawnee mas veces
     }
 
     private void CheckGameOver()
     {
         if (player.isDead)
-            sc.ChangeScene("GameOver");
+            sceneManager.ChangeScene("GameOver");
     }
 
     private void RandomPlayerColor()
@@ -107,6 +114,22 @@ public class GameManager : MonoBehaviour
             player.ChangeColor(Color.cyan);
         else if (randomColor == 3)
             player.ChangeColor(Color.magenta);
+    }
+
+    private void CheckTimerSpeedUpGameplay()
+    {
+        if (timerToSpeedUpGameplay >= timeToSpeedUpGameplay)
+        {
+            ResetTimerToSpeedUpGameplay();
+            IncreaseGameplaySpeed();
+            RandomPlayerColor();
+        }
+    }
+
+    private void ResetTimerToSpeedUpGameplay()
+    {
+        if (timerToSpeedUpGameplay >= timeToSpeedUpGameplay)
+            timerToSpeedUpGameplay = 0.0f;
     }
 
     private void OnDisable()
