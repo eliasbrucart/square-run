@@ -10,7 +10,9 @@ public class SquareLoggerImpl : MonoBehaviour
 
     static AndroidJavaClass SLoggerClass = null;
     static AndroidJavaObject SLoggerInstance = null;
-    AndroidJavaObject _pluginInstance;
+    static AndroidJavaObject _pluginInstance;
+    static AndroidJavaObject unityClass;
+    static AndroidJavaObject unityActivity;
 
     static public SquareLoggerImpl instanceSquareLoggerImpl;
     public static SquareLoggerImpl GetInstance()
@@ -31,15 +33,24 @@ public class SquareLoggerImpl : MonoBehaviour
 
     private void Start()
     {
-        Init();
+        Init("com.example.squarelogger");
     }
 
-    static public void Init()
+    static public void Init(string pluginName)
     {
-        SLoggerClass = new AndroidJavaClass(PACK_NAME + "." + LOGGER_CLASS_NAME);
-        Debug.Log("SLoggerclass " + SLoggerClass);
-        SLoggerInstance = SLoggerClass.CallStatic<AndroidJavaObject>("GetInstance");
-        Debug.Log("Logger instance" + SLoggerInstance);
+        unityClass = new AndroidJavaObject("com.unity3d.player.UnityPlayer");
+        unityActivity = unityClass.GetStatic<AndroidJavaObject>("currentActivity");
+        _pluginInstance = new AndroidJavaObject(pluginName);
+        if(_pluginInstance == null)
+        {
+            Debug.Log("Plugin instance error");
+        }
+        _pluginInstance.CallStatic("reciveUnityActivity", unityActivity);
+
+        //SLoggerClass = new AndroidJavaClass(PACK_NAME + "." + LOGGER_CLASS_NAME);
+        //Debug.Log("SLoggerclass " + SLoggerClass);
+        //SLoggerInstance = SLoggerClass.CallStatic<AndroidJavaObject>("GetInstance");
+        //Debug.Log("Logger instance" + SLoggerInstance);
     }
 
     public static AndroidJavaClass PluginClass
@@ -70,16 +81,20 @@ public class SquareLoggerImpl : MonoBehaviour
         }
     }
 
-    static public void SendLog(string log)
-    {
-        if (SLoggerInstance == null)
-            Init();
-        SLoggerInstance.Call("SendLog", log);
-    }
+    //static public void SendLog(string log)
+    //{
+    //    if (SLoggerInstance == null)
+    //        Init();
+    //    SLoggerInstance.Call("SendLog", log);
+    //}
 
     static public void SaveMaxScore(int score)
     {
-        PluginInstance.Call("SaveScore", score);
+        if(_pluginInstance != null)
+        {
+            var result = _pluginInstance.Call<int>("SaveScore", score);
+            Debug.Log("Save Max Score!");
+        }
     }
 
     static public int GetMaxScore()
