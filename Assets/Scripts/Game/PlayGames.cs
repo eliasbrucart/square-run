@@ -5,8 +5,6 @@ using TMPro;
 
 public class PlayGames : MonoBehaviour
 {
-    string leaderboardID = "CgkIqfmmyPsTEAIQAg";
-    string achievementID = "CgkIqfmmyPsTEAIQAQ";
     public static PlayGamesPlatform platform;
 
     static public PlayGames instancePlayGames;
@@ -15,67 +13,54 @@ public class PlayGames : MonoBehaviour
 
     private GameManager gameManager;
 
+    private static string achievement1ID = GPGSIds.achievement_beginner;
+    private static string leaderboardID = GPGSIds.leaderboard_score_table;
+
     private void Awake()
     {
         if (instancePlayGames != null && instancePlayGames != this)
             Destroy(this.gameObject);
         else
             instancePlayGames = this;
+        DontDestroyOnLoad(gameObject);
     }
 
-    void Start()
+    public static void Init()
     {
-        gameManager = FindObjectOfType<GameManager>();
-        if (platform == null)
-        {
-            PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
-            PlayGamesPlatform.InitializeInstance(config);
-            PlayGamesPlatform.DebugLogEnabled = true;
-            platform = PlayGamesPlatform.Activate();
-        }
-
-        Social.Active.localUser.Authenticate(success =>
-        {
-            if (success)
-            {
-                Debug.Log("Logged in successfully");
-            }
-            else
-            {
-                Debug.Log("Login Failed");
-            }
-        });
+        PlayGamesPlatform.Instance.Authenticate((callback) => { UnlockAchievement(achievement1ID); });
     }
 
-    public void AddScoreToLeaderboard()
+    static public void AddScoreToLeaderboard(int score)
     {
-        if (Social.Active.localUser.authenticated)
+        if (PlayGamesPlatform.Instance.IsAuthenticated())
         {
-            Social.ReportScore(gameManager.score, leaderboardID, success => { });
+            PlayGamesPlatform.Instance.ReportScore(score, leaderboardID, success => { Debug.Log("Se subio al leaderboard"); });
         }
     }
 
-    public void ShowLeaderboard()
+    static public void ShowLeaderboard()
     {
-        if (Social.Active.localUser.authenticated)
+        if (PlayGamesPlatform.Instance.IsAuthenticated())
         {
-            platform.ShowLeaderboardUI();
+            PlayGamesPlatform.Instance.ShowLeaderboardUI();
         }
     }
 
-    public void ShowAchievements()
+    static public void ShowAchievements()
     {
-        if (Social.Active.localUser.authenticated)
+        if (PlayGamesPlatform.Instance.IsAuthenticated())
         {
-            platform.ShowAchievementsUI();
+            PlayGamesPlatform.Instance.ShowAchievementsUI();
         }
     }
 
-    public void UnlockAchievement()
+    static public void UnlockAchievement(string a)
     {
-        if (Social.Active.localUser.authenticated)
+
+        if (PlayGamesPlatform.Instance.IsAuthenticated())
         {
-            Social.ReportProgress(achievementID, 100f, success => { });
+            Debug.Log("LLamdo a desbloquear logro");
+            PlayGamesPlatform.Instance.ReportProgress(a, 100f, success => { });
         }
     }
 }

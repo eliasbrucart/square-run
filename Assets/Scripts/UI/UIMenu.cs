@@ -7,6 +7,11 @@ public class UIMenu : MonoBehaviour
     [SerializeField] private GameObject leaderboardsPanel;
     [SerializeField] private GameObject menuPanel;
 
+    private void Start()
+    {
+        PlayGames.Init();
+    }
+
     public void ToggleLeaderboardsPanel()
     {
         leaderboardsPanel.SetActive(!leaderboardsPanel.activeSelf);

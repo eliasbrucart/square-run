@@ -10,8 +10,9 @@ public class SquareLoggerImpl : MonoBehaviour
 
     static AndroidJavaClass SLoggerClass = null;
     static AndroidJavaObject SLoggerInstance = null;
+    AndroidJavaObject _pluginInstance;
 
-    static SquareLoggerImpl instanceSquareLoggerImpl;
+    static public SquareLoggerImpl instanceSquareLoggerImpl;
     public static SquareLoggerImpl GetInstance()
     {
         return instanceSquareLoggerImpl;
@@ -30,10 +31,10 @@ public class SquareLoggerImpl : MonoBehaviour
 
     private void Start()
     {
-        //Init();
+        Init();
     }
 
-    static void Init()
+    static public void Init()
     {
         SLoggerClass = new AndroidJavaClass(PACK_NAME + "." + LOGGER_CLASS_NAME);
         Debug.Log("SLoggerclass " + SLoggerClass);
@@ -57,7 +58,7 @@ public class SquareLoggerImpl : MonoBehaviour
         }
     }
 
-    public AndroidJavaObject PluginInstance
+    static public AndroidJavaObject PluginInstance
     {
         get
         {
@@ -69,19 +70,19 @@ public class SquareLoggerImpl : MonoBehaviour
         }
     }
 
-    public void SendLog(string log)
+    static public void SendLog(string log)
     {
         if (SLoggerInstance == null)
             Init();
         SLoggerInstance.Call("SendLog", log);
     }
 
-    public void SaveMaxScore(int score)
+    static public void SaveMaxScore(int score)
     {
         PluginInstance.Call("SaveScore", score);
     }
 
-    public int GetMaxScore()
+    static public int GetMaxScore()
     {
         return PluginInstance.Call<int>("GetScore");
     }

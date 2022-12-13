@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private ObstacleManager obstacleManager;
     [SerializeField] private PlayGames playGames;
     private ScenesManager sceneManager;
-    private SquareLoggerImpl squarePluginImpl;
+    //private SquareLoggerImpl squarePluginImpl;
     private bool startGame;
     private float timerToSpeedUpGameplay;
 
@@ -41,7 +41,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        squarePluginImpl = SquareLoggerImpl.GetInstance();
+        //squarePluginImpl = SquareLoggerImpl.GetInstance();
+        //SquareLoggerImpl.Init();
         sceneManager = ScenesManager.instanceScenesManager;
         Player.PlayerDie += CheckGameOver;
         Player.PlayerGetCoin += IncreasePoints;
@@ -49,7 +50,7 @@ public class GameManager : MonoBehaviour
         timerWaitTime = 0.0f;
         timerToSpeedUpGameplay = 0.0f;
         startGame = false;
-        squarePluginImpl.SendLog("Holi");
+        //squarePluginImpl.SendLog("Holi");
     }
 
     void Update()
@@ -87,7 +88,7 @@ public class GameManager : MonoBehaviour
     {
         score += coinValue;
         if (score == firstScoreToIncreaseSpeed || score == secondScoreToIncreaseSpeed || score == thirdScoreToIncreaseSpeed || score == fourthScoreToIncreaseSpeed)
-            playGames.UnlockAchievement();
+            PlayGames.UnlockAchievement(GPGSIds.achievement_beginner);
         //SquareLoggerImpl.instanceSquareLoggerImpl.SaveMaxScore(score);
         //if (score == firstScoreToIncreaseSpeed || score == secondScoreToIncreaseSpeed || score == thirdScoreToIncreaseSpeed || score == fourthScoreToIncreaseSpeed)
         //if(timerToSpeedUpGameplay >= timeToSpeedUpGameplay)
@@ -103,8 +104,9 @@ public class GameManager : MonoBehaviour
     {
         if (player.isDead)
         {
+            SquareLoggerImpl.SaveMaxScore(score);
             sceneManager.ChangeScene("GameOver");
-            playGames.AddScoreToLeaderboard();
+            PlayGames.AddScoreToLeaderboard(score);
         }
     }
 
