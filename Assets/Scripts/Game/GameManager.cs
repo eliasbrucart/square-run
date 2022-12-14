@@ -104,9 +104,9 @@ public class GameManager : MonoBehaviour
     {
         if (player.isDead)
         {
-            SquareLoggerImpl.SaveMaxScore(score);
-            sceneManager.ChangeScene("GameOver");
+            SquareLoggerImpl.SaveLastScore(score);
             PlayGames.AddScoreToLeaderboard(score);
+            sceneManager.ChangeScene("GameOver");
         }
     }
 

@@ -7,10 +7,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import android.util.Log;
+import android.widget.Toast;
 
 public class SquareManager {
     public static final SquareManager _instance = new SquareManager();
     public static Activity activity;
+
+    private static final String LOGTAG = "CWGTech";
 
     public static SquareManager GetInstance(){
         Log.d("SquareLogger->", "Esta funcionando GetInstance");
@@ -19,6 +22,10 @@ public class SquareManager {
 
     public void SendLog(String msg){
         Log.d("SM=>", msg);
+    }
+
+    public static void receiveUnityActivity(Activity tactivity){
+        activity = tactivity;
     }
 
     public void SaveLogs(){
@@ -33,6 +40,8 @@ public class SquareManager {
             FileOutputStream stream = new FileOutputStream(file);
             try {
                 stream.write(Integer.toString(score).getBytes());
+                Log.i(LOGTAG, "Test!");
+                //Toast.makeText(activity, "Saved Score!", Toast.LENGTH_SHORT).show();
             }
             finally {
                 stream.close();

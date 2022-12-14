@@ -13,8 +13,8 @@ public class UISettings : MonoBehaviour
     }
     void Update()
     {
-        //if (panelPluginLogs.activeSelf)
-        //    pluginLogs.text = "High score: " + SquareLoggerImpl.GetInstance().GetMaxScore();
+        if (panelPluginLogs.activeSelf)
+            pluginLogs.text = "Saved last score: " + SquareLoggerImpl.GetLastScore();
     }
 
     public void ActivateLogs()

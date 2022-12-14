@@ -33,19 +33,19 @@ public class SquareLoggerImpl : MonoBehaviour
 
     private void Start()
     {
-        Init("com.example.squarelogger");
+        Init(PACK_NAME);
     }
 
     static public void Init(string pluginName)
     {
         unityClass = new AndroidJavaObject("com.unity3d.player.UnityPlayer");
-        unityActivity = unityClass.GetStatic<AndroidJavaObject>("currentActivity");
+        unityActivity = unityClass.CallStatic<AndroidJavaObject>("currentActivity");
         _pluginInstance = new AndroidJavaObject(pluginName);
         if(_pluginInstance == null)
         {
             Debug.Log("Plugin instance error");
         }
-        _pluginInstance.CallStatic("reciveUnityActivity", unityActivity);
+        _pluginInstance.CallStatic("receiveUnityActivity", unityActivity);
 
         //SLoggerClass = new AndroidJavaClass(PACK_NAME + "." + LOGGER_CLASS_NAME);
         //Debug.Log("SLoggerclass " + SLoggerClass);
@@ -88,7 +88,7 @@ public class SquareLoggerImpl : MonoBehaviour
     //    SLoggerInstance.Call("SendLog", log);
     //}
 
-    static public void SaveMaxScore(int score)
+    static public void SaveLastScore(int score)
     {
         if(_pluginInstance != null)
         {
@@ -97,9 +97,16 @@ public class SquareLoggerImpl : MonoBehaviour
         }
     }
 
-    static public int GetMaxScore()
+    static public int GetLastScore()
     {
-        return PluginInstance.Call<int>("GetScore");
+        if(_pluginInstance != null)
+        {
+            var result = _pluginInstance.Call<int>("GetScore");
+            return result;
+            Debug.Log("Get Last Score");
+        }
+        return 0;
+        //return PluginInstance.Call<int>("GetScore");
     }
 
     private void OnDestroy()
