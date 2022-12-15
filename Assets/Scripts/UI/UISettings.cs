@@ -9,12 +9,18 @@ public class UISettings : MonoBehaviour
     public TMP_Text pluginLogs;
     void Start()
     {
-        
+        SquareLoggerImpl.UpdateLogText += UpdateTextOfLogs;
     }
+
+    private void OnDisable()
+    {
+        SquareLoggerImpl.UpdateLogText -= UpdateTextOfLogs;
+    }
+
     void Update()
     {
         if (panelPluginLogs.activeSelf)
-            pluginLogs.text = "Saved last score: " + SquareLoggerImpl.GetInstance().ReadFile(" ");
+            pluginLogs.text = SquareLoggerImpl.GetInstance().ReadFile(" ");
     }
 
     public void DeleteLogs()
@@ -25,6 +31,11 @@ public class UISettings : MonoBehaviour
     public void ActivateLogs()
     {
         panelPluginLogs.SetActive(!panelPluginLogs.activeSelf);
+    }
+
+    public void UpdateTextOfLogs(string text)
+    {
+        pluginLogs.text = text;
     }
 
     public void DisableLogs()

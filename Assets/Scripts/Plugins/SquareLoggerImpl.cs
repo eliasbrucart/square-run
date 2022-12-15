@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class SquareLoggerImpl : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class SquareLoggerImpl : MonoBehaviour
         {
             alertHandler = alertHandlerIn;
         }
-        public void OnButtonTapped(int index)
+        public void onButtonTapped(int index)
         {
             Debug.Log("Button tapped: " + index);
             if (alertHandler != null)
@@ -34,6 +35,8 @@ public class SquareLoggerImpl : MonoBehaviour
     {
         return instanceSquareLoggerImpl;
     }
+
+    public static Action<string> UpdateLogText;
 
     private void Awake()
     {
@@ -144,8 +147,13 @@ public class SquareLoggerImpl : MonoBehaviour
 
     public void ShowAlert()
     {
-        ShowAlertDialog(new string[] { "Atencion!", "Esta seguro que quiere borrar los registros del juego?", "Si", "No" }, (int obj) =>
+        ShowAlertDialog(new string[] { "Atencion!", "Esta seguro que quiere borrar los registros del juego?", "No", "Si" }, (int obj) =>
         {
+            if (obj == -2)
+            {
+                PluginInstance.CallStatic("ClearFile", " ");
+                UpdateLogText?.Invoke(PluginInstance.CallStatic<string>("ReadFile", ""));
+            }
             Debug.Log("Local Handler called: " + obj);
         });
     }
