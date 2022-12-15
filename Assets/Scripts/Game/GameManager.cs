@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
         timerWaitTime = 0.0f;
         timerToSpeedUpGameplay = 0.0f;
         startGame = false;
-        //squarePluginImpl.SendLog("Holi");
+        SquareLoggerImpl.GetInstance().WriteFile("Start Log");
     }
 
     void Update()
@@ -104,7 +104,7 @@ public class GameManager : MonoBehaviour
     {
         if (player.isDead)
         {
-            SquareLoggerImpl.SaveLastScore(score);
+            SquareLoggerImpl.GetInstance().WriteFile("GameOver log");
             PlayGames.AddScoreToLeaderboard(score);
             sceneManager.ChangeScene("GameOver");
         }

@@ -10,9 +10,6 @@ public class SquareLoggerImpl : MonoBehaviour
 
     static AndroidJavaClass SLoggerClass = null;
     static AndroidJavaObject SLoggerInstance = null;
-    static AndroidJavaObject _pluginInstance;
-    static AndroidJavaObject unityClass;
-    static AndroidJavaObject unityActivity;
 
     static public SquareLoggerImpl instanceSquareLoggerImpl;
     public static SquareLoggerImpl GetInstance()
@@ -33,19 +30,21 @@ public class SquareLoggerImpl : MonoBehaviour
 
     private void Start()
     {
-        Init(PACK_NAME);
+        // Init();
     }
 
-    static public void Init(string pluginName)
+    public void Init()
     {
-        unityClass = new AndroidJavaObject("com.unity3d.player.UnityPlayer");
-        unityActivity = unityClass.CallStatic<AndroidJavaObject>("currentActivity");
-        _pluginInstance = new AndroidJavaObject(pluginName);
-        if(_pluginInstance == null)
-        {
-            Debug.Log("Plugin instance error");
-        }
-        _pluginInstance.CallStatic("receiveUnityActivity", unityActivity);
+        //SLoggerClass = new AndroidJavaClass("");
+        //unityClass = new AndroidJavaObject("com.unity3d.player.UnityPlayer");
+        //unityActivity = unityClass.CallStatic<AndroidJavaObject>("currentActivity");
+        //_pluginInstance = new AndroidJavaObject(pluginName);
+        //if(_pluginInstance == null)
+        //{
+        //    Debug.Log("Plugin instance error");
+        //}
+        //_pluginInstance.CallStatic("receiveUnityActivity", unityActivity);
+
 
         //SLoggerClass = new AndroidJavaClass(PACK_NAME + "." + LOGGER_CLASS_NAME);
         //Debug.Log("SLoggerclass " + SLoggerClass);
@@ -57,13 +56,13 @@ public class SquareLoggerImpl : MonoBehaviour
     {
         get
         {
-            if(SLoggerClass == null)
+            if (SLoggerClass == null)
             {
                 SLoggerClass = new AndroidJavaClass(PACK_NAME + "." + LOGGER_CLASS_NAME);
                 AndroidJavaClass unityJava = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
                 AndroidJavaObject activity = unityJava.GetStatic<AndroidJavaObject>("currentActivity");
                 Debug.Log("activity: " + activity);
-                SLoggerClass.SetStatic("activity", activity);
+                SLoggerClass.CallStatic("receiveUnityActivity", activity);
             }
             return SLoggerClass;
         }
@@ -73,7 +72,7 @@ public class SquareLoggerImpl : MonoBehaviour
     {
         get
         {
-            if(SLoggerInstance == null)
+            if (SLoggerInstance == null)
             {
                 SLoggerInstance = PluginClass.CallStatic<AndroidJavaObject>("GetInstance");
             }
@@ -81,32 +80,33 @@ public class SquareLoggerImpl : MonoBehaviour
         }
     }
 
-    //static public void SendLog(string log)
-    //{
-    //    if (SLoggerInstance == null)
-    //        Init();
-    //    SLoggerInstance.Call("SendLog", log);
-    //}
+    public void SendLog(string log)
+    {
+        PluginInstance.Call("SendLogs", log);
+    }
+
+    public void WriteFile(string a)
+    {
+        PluginInstance.CallStatic("WriteFile", a);
+    }
+
+    public string ReadFile(string a)
+    {
+        return PluginInstance.CallStatic<string>("ReadFile", a);
+    }
+
+    public string GetLogs()
+    {
+        return PluginInstance.Call<string>("GetAllLogs");
+    }
 
     static public void SaveLastScore(int score)
     {
-        if(_pluginInstance != null)
-        {
-            var result = _pluginInstance.Call<int>("SaveScore", score);
-            Debug.Log("Save Max Score!");
-        }
-    }
-
-    static public int GetLastScore()
-    {
-        if(_pluginInstance != null)
-        {
-            var result = _pluginInstance.Call<int>("GetScore");
-            return result;
-            Debug.Log("Get Last Score");
-        }
-        return 0;
-        //return PluginInstance.Call<int>("GetScore");
+        //if(_pluginInstance != null)
+        //{
+        //    var result = _pluginInstance.Call<int>("SaveScore", score);
+        //    Debug.Log("Save Max Score!");
+        //}
     }
 
     private void OnDestroy()
