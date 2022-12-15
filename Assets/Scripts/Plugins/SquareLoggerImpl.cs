@@ -8,6 +8,24 @@ public class SquareLoggerImpl : MonoBehaviour
     const string PACK_NAME = "com.example.squarelogger";
     const string LOGGER_CLASS_NAME = "SquareManager";
 
+    class AlertViewCallback : AndroidJavaProxy
+    {
+        private System.Action<int> alertHandler;
+
+        public AlertViewCallback(System.Action<int>alertHandlerIn) : base (PACK_NAME + "." + LOGGER_CLASS_NAME + "$AlertViewCallback")
+        {
+            alertHandler = alertHandlerIn;
+        }
+        public void OnButtonTapped(int index)
+        {
+            Debug.Log("Button tapped: " + index);
+            if (alertHandler != null)
+            {
+                alertHandler(index);
+            }
+        }
+    }
+
     static AndroidJavaClass SLoggerClass = null;
     static AndroidJavaObject SLoggerInstance = null;
 
@@ -31,6 +49,16 @@ public class SquareLoggerImpl : MonoBehaviour
     private void Start()
     {
         // Init();
+    }
+
+    private void Update()
+    {
+        //if(Input.GetMouseButtonDown(0)){
+        //    ShowAlertDialog(new string[] { "Atencion!", "Esta seguro que quiere borrar los registros del juego?", "Si", "No" }, (int obj) =>
+        //    {
+        //        Debug.Log("Local Handler called: " + obj);
+        //    });
+        //}
     }
 
     public void Init()
@@ -98,6 +126,28 @@ public class SquareLoggerImpl : MonoBehaviour
     public string GetLogs()
     {
         return PluginInstance.Call<string>("GetAllLogs");
+    }
+
+    public void ShowAlertDialog(string[] strings, System.Action<int>handler = null)
+    {
+        if (strings.Length < 3)
+        {
+            Debug.LogError("AlertView requires at least 3 strings");
+            return;
+        }
+
+        if (Application.platform == RuntimePlatform.Android)
+            PluginInstance.Call("ShowAlertView", new object[] { strings, new AlertViewCallback(handler) });
+        else
+            Debug.LogWarning("AlertView not supported on this platform");
+    }
+
+    public void ShowAlert()
+    {
+        ShowAlertDialog(new string[] { "Atencion!", "Esta seguro que quiere borrar los registros del juego?", "Si", "No" }, (int obj) =>
+        {
+            Debug.Log("Local Handler called: " + obj);
+        });
     }
 
     static public void SaveLastScore(int score)

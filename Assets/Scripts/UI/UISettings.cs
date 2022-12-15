@@ -17,6 +17,11 @@ public class UISettings : MonoBehaviour
             pluginLogs.text = "Saved last score: " + SquareLoggerImpl.GetInstance().ReadFile(" ");
     }
 
+    public void DeleteLogs()
+    {
+        SquareLoggerImpl.GetInstance().ShowAlert();
+    }
+
     public void ActivateLogs()
     {
         panelPluginLogs.SetActive(!panelPluginLogs.activeSelf);

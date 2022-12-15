@@ -6,8 +6,10 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import android.app.AlertDialog;
 import android.app.Application;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.util.Log;
 
 import android.widget.Toast;
@@ -23,6 +25,10 @@ public class SquareManager extends Application {
     public static Activity activity;
 
     private static final String LOGTAG = "CWGTech";
+
+    public interface AlertViewCallback{
+        public void onButtonTapped(int id);
+    }
 
     public static SquareManager GetInstance(){
         Log.d(LOGTAG, "Esta funcionando GetInstance");
@@ -140,5 +146,32 @@ public class SquareManager extends Application {
         Context context = activity.getApplicationContext();
         context.deleteFile("logs");
         WriteFile("");
+    }
+
+    public void ShowAlertView(String[] strings, final AlertViewCallback callback){
+        if(strings.length<3){
+            Log.i(LOGTAG, "Error - expected at least 3 strings, got" + strings.length);
+            return;
+        }
+        DialogInterface.OnClickListener myClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int id) {
+                dialogInterface.dismiss();
+                Log.i(LOGTAG, "Tapped: " + id);
+                callback.onButtonTapped(id);
+            }
+        };
+
+        AlertDialog alertDialog = new AlertDialog.Builder(activity)
+                .setTitle(strings[0])
+                .setMessage(strings[1])
+                .setCancelable(false)
+                .create();
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL,strings[2],myClickListener);
+        if (strings.length>3)
+            alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE,strings[3],myClickListener);
+        if (strings.length>4)
+            alertDialog.setButton(AlertDialog.BUTTON_POSITIVE,strings[4],myClickListener);
+        alertDialog.show();
     }
 }
