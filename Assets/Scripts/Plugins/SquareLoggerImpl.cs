@@ -158,15 +158,6 @@ public class SquareLoggerImpl : MonoBehaviour
         });
     }
 
-    static public void SaveLastScore(int score)
-    {
-        //if(_pluginInstance != null)
-        //{
-        //    var result = _pluginInstance.Call<int>("SaveScore", score);
-        //    Debug.Log("Save Max Score!");
-        //}
-    }
-
     private void OnDestroy()
     {
         if (instanceSquareLoggerImpl == this)

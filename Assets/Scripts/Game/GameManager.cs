@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
         timerToSpeedUpGameplay = 0.0f;
         startGame = false;
         SquareLoggerImpl.GetInstance().WriteFile("Start Log");
+        Application.logMessageReceived += SaveAllLogs;
     }
 
     void Update()
@@ -137,9 +138,15 @@ public class GameManager : MonoBehaviour
             timerToSpeedUpGameplay = 0.0f;
     }
 
+    private void SaveAllLogs(string logString, string stackTrace, LogType type)
+    {
+        SquareLoggerImpl.GetInstance().WriteFile(logString);
+    }
+
     private void OnDisable()
     {
         Player.PlayerDie -= CheckGameOver;
         Player.PlayerGetCoin -= IncreasePoints;
+        Application.logMessageReceived -= SaveAllLogs;
     }
 }
